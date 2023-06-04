@@ -1,0 +1,27 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package com.ipap.springbootgrpcprotocol;
+
+/*
+A unique number needs to be assigned to each attribute, called the tag.
+The protocol buffer uses this tag to represent the attribute, instead of using the attribute name.
+So unlike JSON, where we'd pass the attribute name firstName every single time,
+the protocol buffer will use the number 1 to represent firstName.
+The response payload definition is similar to the request.
+
+Note that we can use the same tag across multiple message types
+
+The numbers are called 'Tags'
+*/
+message HelloRequest {
+  string firstName = 1;
+  string lastName = 2;
+}
+
+message HelloResponse {
+  string greeting = 1;
+}
+
+service HelloService {
+  rpc hello(HelloRequest) returns (HelloResponse);
+}
